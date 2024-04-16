@@ -116,7 +116,7 @@ def fingers(right_lm_list, left_lm_list):
                     ###########################################################################
                     ###########################################################################
 
-def fingers_crossed_side_R(fingers,fingers_top_R,fingers_end_R,right_lm_list,left_lm_list):
+def fingers_crossed_R(fingers,fingers_top_R,fingers_end_R,right_lm_list,left_lm_list):
     if (len(fingers_top_R)!=0):
         for i in fingers:
             if (math.sqrt(pow(right_lm_list[0].x-fingers_top_R[i][0],2)+pow(right_lm_list[0].y-fingers_top_R[i][1],2))
@@ -124,7 +124,7 @@ def fingers_crossed_side_R(fingers,fingers_top_R,fingers_end_R,right_lm_list,lef
                 return False
     return True and (len(fingers_top_R)!=0)
 
-def fingers_crossed_side_L(fingers,fingers_top_L,fingers_end_L,right_lm_list,left_lm_list):
+def fingers_crossed_L(fingers,fingers_top_L,fingers_end_L,right_lm_list,left_lm_list):
     if (len(fingers_top_L)!=0):
         for i in fingers:
               if (math.sqrt(pow(left_lm_list[0].x-fingers_top_L[i][0],2)+pow(left_lm_list[0].y-fingers_top_L[i][1],2))
@@ -135,7 +135,7 @@ def fingers_crossed_side_L(fingers,fingers_top_L,fingers_end_L,right_lm_list,lef
                     ###########################################################################
                     ###########################################################################
                     ###########################################################################
-def Fingers_straight_side_R(fingers,fingers_top_R,fingers_end_R,right_lm_list,left_lm_list):
+def Fingers_straight_R(fingers,fingers_top_R,fingers_end_R,right_lm_list,left_lm_list):
     if (len(fingers_top_R)!=0):
         for i in fingers:
                if (math.sqrt(pow(right_lm_list[0].x-fingers_top_R[i][0],2)+pow(right_lm_list[0].y-fingers_top_R[i][1],2))
@@ -143,7 +143,7 @@ def Fingers_straight_side_R(fingers,fingers_top_R,fingers_end_R,right_lm_list,le
                 return False
     return True and (len(fingers_top_R)!=0)
 
-def Fingers_straight_side_L(fingers,fingers_top_L,fingers_end_L,right_lm_list,left_lm_list):
+def Fingers_straight_L(fingers,fingers_top_L,fingers_end_L,right_lm_list,left_lm_list):
     if (len(fingers_top_L)!=0):
         for i in fingers:
               if (math.sqrt(pow(left_lm_list[0].x-fingers_top_L[i][0],2)+pow(left_lm_list[0].y-fingers_top_L[i][1],2))
@@ -156,14 +156,14 @@ def Fingers_straight_side_L(fingers,fingers_top_L,fingers_end_L,right_lm_list,le
                     ###########################################################################
 def Like_Sign(fingers_top_R,fingers_top_L,fingers_middle_R,fingers_middle_L,fingers_end_R,fingers_end_L,pos,right_lm_list,left_lm_list):
             
-            if (fingers_crossed_side_R([1,2,3,4],fingers_top_R,fingers_end_R,right_lm_list,left_lm_list) and
+            if (fingers_crossed_R([1,2,3,4],fingers_top_R,fingers_end_R,right_lm_list,left_lm_list) and
                  pos[0]=="RSIDE" and 
                  fingers_top_R[0][1]<fingers_middle_R[0][1] and 
                  fingers_end_R[0][1]>fingers_middle_R[0][1] and 
                  abs(fingers_end_R[0][1]-fingers_top_R[0][1])>.09):
                 return True
 
-            if (fingers_crossed_side_L([1,2,3,4],fingers_top_L,fingers_end_L,right_lm_list,left_lm_list) and
+            if (fingers_crossed_L([1,2,3,4],fingers_top_L,fingers_end_L,right_lm_list,left_lm_list) and
                  (pos[0]=="LSIDE" or (len(pos)>1 and pos[1]=="LSIDE" )) and 
                  fingers_top_L[0][1]<fingers_middle_L[0][1] and 
                  fingers_end_L[0][1]>fingers_middle_L[0][1] and
@@ -174,13 +174,13 @@ def Like_Sign(fingers_top_R,fingers_top_L,fingers_middle_R,fingers_middle_L,fing
                     ###########################################################################
                     ###########################################################################
 def DisLike_Sign(fingers_top_R,fingers_top_L,fingers_middle_R,fingers_middle_L,fingers_end_R,fingers_end_L,pos,right_lm_list,left_lm_list):
-            if (fingers_crossed_side_R([1,2,3,4],fingers_top_R,fingers_end_R,right_lm_list,left_lm_list) and
+            if (fingers_crossed_R([1,2,3,4],fingers_top_R,fingers_end_R,right_lm_list,left_lm_list) and
                  pos[0]=="RSIDE" and 
                  fingers_top_R[0][1]>fingers_middle_R[0][1] and 
                  fingers_end_R[0][1]<fingers_middle_R[0][1] and 
                  abs(fingers_end_R[0][1]-fingers_top_R[0][1])>.09):
                 return True
-            if (fingers_crossed_side_L([1,2,3,4],fingers_top_L,fingers_end_L,right_lm_list,left_lm_list) and
+            if (fingers_crossed_L([1,2,3,4],fingers_top_L,fingers_end_L,right_lm_list,left_lm_list) and
                  (pos[0]=="LSIDE" or len(pos)>1) and 
                  fingers_top_L[0][1]>fingers_middle_L[0][1] and 
                  fingers_end_L[0][1]<fingers_middle_L[0][1] and
@@ -192,8 +192,8 @@ def DisLike_Sign(fingers_top_R,fingers_top_L,fingers_middle_R,fingers_middle_L,f
                     ###########################################################################
 def Bird_Sign(fingers_top_R,fingers_top_L,fingers_middle_R,fingers_middle_L,fingers_end_R,fingers_end_L,pos,right_lm_list,left_lm_list):
     try:
-        if (Fingers_straight_side_L([1,2,3,4],fingers_top_L,fingers_end_L,right_lm_list,left_lm_list) and
-            Fingers_straight_side_R([1,2,3,4],fingers_top_R,fingers_end_R,right_lm_list,left_lm_list) and 
+        if (Fingers_straight_L([1,2,3,4],fingers_top_L,fingers_end_L,right_lm_list,left_lm_list) and
+            Fingers_straight_R([1,2,3,4],fingers_top_R,fingers_end_R,right_lm_list,left_lm_list) and 
                  pos[0]=="RSIDE" and 
                  fingers_top_R[0][1]<fingers_middle_R[0][1] and 
                  fingers_end_R[0][1]>fingers_middle_R[0][1] and
